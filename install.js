@@ -28,19 +28,19 @@ module.exports = async kernel =>
 {
 	const config =
 	{
-		requires:
-		[
-			{
-				type: 'conda',
-				name:
-				[
-					'ffmpeg'
-				],
-				args: '-c conda-forge'
-			}
-		],
 		run:
 		[
+			{
+				method: 'shell.run',
+				params:
+				{
+					message: [
+            '{{gpu === "nvidia" ? "conda install -y nvidia/label/cuda-12.1.0::cuda" : null}}',
+            '{{gpu === "nvidia" && platform === "win32" ? "conda install -y cudnn libzlib-wapi -c conda-forge" : null}}',
+            '{{gpu === "nvidia" && platform === "linux" ? "conda install -y cudnn -c conda-forge" : null}}'
+          ]
+				}
+			},
 			{
 				method: 'shell.run',
 				params:
