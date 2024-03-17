@@ -30,16 +30,17 @@ module.exports = async kernel =>
 	{
 		run:
 		[
-			(kernel.gpu === 'darwin' ? {
+      {
+        when: '{{gpu === "nvidia"}}',
 				method: 'shell.run',
 				params:
 				{
-          conda: { name: "cu118" },
+          conda: { name: 'cu118' },
 					message: [
-            '{{gpu === "nvidia" ? "conda install -y --override-channels cudatoolkit=11.8.0 cudnn=8.4.1.50 -c conda-forge" : null}}',
+            'conda install -y --override-channels cudatoolkit=11.8.0 cudnn=8.4.1.50 -c conda-forge'
           ]
 				}
-			} : null),
+			},
 			{
 				method: 'shell.run',
 				params:
