@@ -39,8 +39,8 @@ module.exports = async kernel =>
           },
 					message: [
             '{{gpu === "nvidia" ? "conda install -y nvidia/label/cuda-11.8.0::cuda" : null}}',
-            '{{gpu === "nvidia" && platform === "win32" ? "conda install -y cudnn=8.2.4 libzlib-wapi -c conda-forge" : null}}',
-            '{{gpu === "nvidia" && platform === "linux" ? "conda install -y cudnn=8.2.4 -c conda-forge" : null}}'
+            '{{gpu === "nvidia" && platform === "win32" ? "conda install -y cudnn=8.4.1.50 libzlib-wapi -c conda-forge" : null}}',
+            '{{gpu === "nvidia" && platform === "linux" ? "conda install -y cudnn=8.4.1.50 -c conda-forge" : null}}'
           ]
 				}
 			},
