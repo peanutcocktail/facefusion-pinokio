@@ -34,6 +34,19 @@ module.exports = async kernel =>
 				method: 'shell.run',
 				params:
 				{
+          conda: {
+            name: "cu118"
+          },
+					message: [
+            '{{gpu === "nvidia" ? "conda install -y nvidia/label/cuda-11.8.0::cuda" : null}}',
+            '{{gpu === "nvidia" ? "conda install -y cudatoolkit=11.8.0 cudnn=8.4.1.50 -c conda-forge" : null}}',
+          ]
+				}
+			},
+			{
+				method: 'shell.run',
+				params:
+				{
 					message: 'git clone https://github.com/facefusion/facefusion --branch 2.4.0 --single-branch'
 				}
 			},
@@ -48,8 +61,7 @@ module.exports = async kernel =>
 					message: install(kernel),
 					path: 'facefusion',
           conda: {
-            name: "cu118",
-            args: "{{gpu === 'nvidia' ? 'cudatoolkit=11.8.0 cudnn=8.4.1.50 -c conda-forge' : null}}"
+            name: "cu118"
           },
 					venv: 'env'
 				}
