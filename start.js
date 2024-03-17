@@ -24,6 +24,9 @@ module.exports = () =>
 				{
 					message: '{{self.cmd[local.mode]}}',
 					path: 'facefusion',
+          conda: {
+            name: "cu118"
+          },
 					venv: 'env',
 					on:
 					[
