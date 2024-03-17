@@ -35,7 +35,7 @@ module.exports = async kernel =>
 				method: 'shell.run',
 				params:
 				{
-          conda: { name: 'cu118' },
+          conda: { name: '{{ gpu === "nvidia" ? "cu118": "base"}}' },
 					message: [
             'conda install -y --override-channels cudatoolkit=11.8.0 cudnn=8.4.1.50 -c conda-forge'
           ]
@@ -58,7 +58,7 @@ module.exports = async kernel =>
 					},
 					message: install(kernel),
 					path: 'facefusion',
-          conda: { name: "cu118" },
+          conda: { name: '{{ gpu === "nvidia" ? "cu118": "base"}}' },
 					venv: 'env'
 				}
 			},
